@@ -18,6 +18,7 @@ class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.grey[900],
       body: SafeArea(
         child: Padding(
           padding: EdgeInsets.symmetric(horizontal: 10.0),
@@ -44,9 +45,11 @@ class _MyAppState extends State<MyApp> {
               Expanded(
                 child: Padding(
                   padding: EdgeInsets.all(15.0),
-                  child: FlatButton(
-                    textColor: Colors.white,
-                    color: Colors.green,
+                  child: TextButton(
+                    style: ButtonStyle(
+                      backgroundColor: MaterialStateProperty.all(Colors.green),
+                      foregroundColor: MaterialStateProperty.all(Colors.white),
+                    ),
                     child: Text(
                       'True',
                       style: TextStyle(
@@ -63,8 +66,11 @@ class _MyAppState extends State<MyApp> {
               Expanded(
                 child: Padding(
                   padding: EdgeInsets.all(15.0),
-                  child: FlatButton(
-                    color: Colors.red,
+                  child: TextButton(
+                    style: ButtonStyle(
+                      backgroundColor: MaterialStateProperty.all(Colors.red),
+                      foregroundColor: MaterialStateProperty.all(Colors.white),
+                    ),
                     child: Text(
                       'False',
                       style: TextStyle(
