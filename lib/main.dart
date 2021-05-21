@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:quizzler/questions.dart';
+import 'package:quizzler/solutions.dart';
+import 'package:rflutter_alert/rflutter_alert.dart';
 
 void main() {
   runApp(
@@ -15,6 +18,9 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
+  List<Icon> count = [];
+  int current = 0;
+  int score = 0;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -32,7 +38,7 @@ class _MyAppState extends State<MyApp> {
                   padding: EdgeInsets.all(10.0),
                   child: Center(
                     child: Text(
-                      'This is where the question text will go.',
+                      questions[current],
                       textAlign: TextAlign.center,
                       style: TextStyle(
                         fontSize: 25.0,
@@ -58,7 +64,45 @@ class _MyAppState extends State<MyApp> {
                       ),
                     ),
                     onPressed: () {
-                      // TODO: The user picked true.
+                      debugPrint('true');
+                      setState(() {
+                        if (current < 6) {
+                          // current = current + 1;
+                          current++;
+                        } else {
+                          Alert(
+                            context: context,
+                            type: AlertType.success,
+                            title: "Total score is",
+                            desc: "\$score",
+                            buttons: [
+                              DialogButton(
+                                child: Text(
+                                  "COOL.",
+                                  style: TextStyle(
+                                      color: Colors.white, fontSize: 20),
+                                ),
+                                onPressed: () {
+                                  setState(() {
+                                    current = 0;
+                                  });
+                                  Navigator.pop(context);
+                                },
+                                width: 120,
+                              )
+                            ],
+                          ).show();
+                        }
+                        if (solutions[current]) {
+                          setState(() {
+                            score = score + 1;
+                          });
+                          count.add(trueWidget());
+                        } else {
+                          count.add(wrongWidget());
+                        }
+                      });
+                      // User picked true.
                     },
                   ),
                 ),
@@ -79,12 +123,53 @@ class _MyAppState extends State<MyApp> {
                       ),
                     ),
                     onPressed: () {
-                      // TODO: The user picked false.
+                      debugPrint('false');
+                      setState(() {
+                        if (current < 6) {
+                          // current = current + 1;
+                          current++;
+                        } else {
+                          Alert(
+                            context: context,
+                            type: AlertType.success,
+                            title: "Total score is",
+                            desc: "\$score",
+                            buttons: [
+                              DialogButton(
+                                child: Text(
+                                  "COOL.",
+                                  style: TextStyle(
+                                      color: Colors.white, fontSize: 20),
+                                ),
+                                onPressed: () {
+                                  setState(() {
+                                    current = 0;
+                                  });
+                                  Navigator.pop(context);
+                                },
+                                width: 120,
+                              )
+                            ],
+                          ).show();
+                        }
+                        if (solutions[current]) {
+                          count.add(wrongWidget());
+                        } else {
+                          setState(() {
+                            score = score + 1;
+                          });
+                          count.add(trueWidget());
+                        }
+                      });
+                      // User picked false.
                     },
                   ),
                 ),
               ),
-              //TODO: Add a Row here as your score keeper
+              Row(
+                children: count,
+              ),
+              // Add a Row here as your score keeper
             ],
           ),
 /*
