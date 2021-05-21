@@ -48,6 +48,9 @@ class _MyAppState extends State<MyApp> {
                   ),
                 ),
               ),
+
+              // TRUE
+
               Expanded(
                 child: Padding(
                   padding: EdgeInsets.all(15.0),
@@ -65,6 +68,7 @@ class _MyAppState extends State<MyApp> {
                     ),
                     onPressed: () {
                       debugPrint('true');
+                      debugPrint('$current');
                       setState(() {
                         if (current < 6) {
                           // current = current + 1;
@@ -73,8 +77,8 @@ class _MyAppState extends State<MyApp> {
                           Alert(
                             context: context,
                             type: AlertType.success,
-                            title: "Total score is",
-                            desc: "\$score",
+                            title: "Total score is $score",
+                            // desc: "",
                             buttons: [
                               DialogButton(
                                 child: Text(
@@ -85,11 +89,13 @@ class _MyAppState extends State<MyApp> {
                                 onPressed: () {
                                   setState(() {
                                     current = 0;
+                                    count = [];
+                                    score = 0;
                                   });
                                   Navigator.pop(context);
                                 },
-                                width: 120,
-                              )
+                                width: 220,
+                              ),
                             ],
                           ).show();
                         }
@@ -107,6 +113,9 @@ class _MyAppState extends State<MyApp> {
                   ),
                 ),
               ),
+
+              // FALSE
+
               Expanded(
                 child: Padding(
                   padding: EdgeInsets.all(15.0),
@@ -124,6 +133,7 @@ class _MyAppState extends State<MyApp> {
                     ),
                     onPressed: () {
                       debugPrint('false');
+                      debugPrint('$current');
                       setState(() {
                         if (current < 6) {
                           // current = current + 1;
@@ -132,8 +142,8 @@ class _MyAppState extends State<MyApp> {
                           Alert(
                             context: context,
                             type: AlertType.success,
-                            title: "Total score is",
-                            desc: "\$score",
+                            title: "Total score is $score",
+                            // desc: "",
                             buttons: [
                               DialogButton(
                                 child: Text(
@@ -144,6 +154,8 @@ class _MyAppState extends State<MyApp> {
                                 onPressed: () {
                                   setState(() {
                                     current = 0;
+                                    count = [];
+                                    score = 0;
                                   });
                                   Navigator.pop(context);
                                 },
